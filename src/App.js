@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import SubscriptionPage from './Subscription';
+import NewsManagement from './NewsManagement';
 import './App.css';
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('subscription');
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <nav style={{ padding: '20px', background: '#f8f9fa', marginBottom: '20px' }}>
+        <button 
+          onClick={() => setCurrentPage('subscription')}
+          style={{ marginRight: '10px', padding: '10px 20px' }}
         >
-          Learn React
-        </a>
-      </header>
+          Subscription
+        </button>
+        <button 
+          onClick={() => setCurrentPage('news')}
+          style={{ padding: '10px 20px' }}
+        >
+          News Management
+        </button>
+      </nav>
+
+      {currentPage === 'subscription' && <SubscriptionPage />}
+      {currentPage === 'news' && <NewsManagement />}
     </div>
   );
 }
