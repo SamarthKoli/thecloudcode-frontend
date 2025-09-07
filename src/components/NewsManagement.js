@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../NewsManagement.css';
 
+
 const NewsManagement = () => {
     const [articles, setArticles] = useState([]);
     const [processedArticles, setProcessedArticles] = useState([]);
@@ -144,6 +145,8 @@ const NewsManagement = () => {
                     >
                         {processing ? 'Generating...' : '📧 Generate Newsletter'}
                     </button>
+
+              
                 </div>
             </div>
 
