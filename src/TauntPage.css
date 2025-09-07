@@ -1,0 +1,333 @@
+.taunt-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', monospace;
+    position: relative;
+    overflow: hidden;
+}
+
+.taunt-page.loading {
+    flex-direction: column;
+    color: white;
+    text-align: center;
+}
+
+.loading-spinner {
+    font-size: 4rem;
+    animation: spin 2s linear infinite;
+    margin-bottom: 2rem;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.taunt-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 800px;
+    width: 90%;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.taunt-header {
+    margin-bottom: 2rem;
+}
+
+.warning-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.taunt-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #FF6B35;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.status-code {
+    background: #FF6B35;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.taunt-content {
+    text-align: left;
+}
+
+.main-message h2 {
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.suggestion {
+    background: rgba(255, 107, 53, 0.1);
+    border: 2px solid rgba(255, 107, 53, 0.3);
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.suggestion p {
+    font-size: 1.2rem;
+    color: #FF6B35;
+    font-weight: 600;
+    margin: 0;
+}
+
+.incident-info {
+    margin: 2rem 0;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.info-label {
+    font-weight: bold;
+    color: #666;
+}
+
+.info-value {
+    color: #FF6B35;
+    font-family: 'Courier New', monospace;
+}
+
+.fake-terminal {
+    margin: 2rem 0;
+    background: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.terminal-header {
+    background: #333;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.btn.red { background: #ff5f56; }
+.btn.yellow { background: #ffbd2e; }
+.btn.green { background: #27ca3f; }
+
+.terminal-title {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.terminal-body {
+    padding: 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: #0f0;
+    min-height: 120px;
+}
+
+.terminal-line {
+    margin-bottom: 0.5rem;
+}
+
+.prompt {
+    color: #0f0;
+    font-weight: bold;
+}
+
+.command {
+    color: #fff;
+}
+
+.blinking-cursor {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+.taunt-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.go-home-btn {
+    background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.go-home-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+}
+
+.contact-btn {
+    background: transparent;
+    color: #FF6B35;
+    border: 2px solid #FF6B35;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.contact-btn:hover {
+    background: #FF6B35;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.educational-content {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.educational-content h3 {
+    color: #FF6B35;
+    margin-bottom: 1rem;
+}
+
+.resource-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.resource-links a {
+    background: rgba(255, 107, 53, 0.1);
+    color: #FF6B35;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.resource-links a:hover {
+    background: #FF6B35;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.float-emoji {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.3;
+    animation: floatAround 10s ease-in-out infinite;
+}
+
+@keyframes floatAround {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    25% { transform: translateY(-30px) translateX(20px); }
+    50% { transform: translateY(-20px) translateX(-15px); }
+    75% { transform: translateY(10px) translateX(25px); }
+}
+
+.float-emoji:nth-child(1) { top: 10%; left: 10%; }
+.float-emoji:nth-child(2) { top: 20%; right: 10%; }
+.float-emoji:nth-child(3) { bottom: 30%; left: 5%; }
+.float-emoji:nth-child(4) { bottom: 10%; right: 15%; }
+
+@media (max-width: 768px) {
+    .taunt-container {
+        padding: 2rem;
+        margin: 1rem;
+    }
+    
+    .taunt-title {
+        font-size: 2rem;
+    }
+    
+    .main-message h2 {
+        font-size: 1.5rem;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .taunt-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .resource-links {
+        flex-direction: column;
+        align-items: center;
+    }
+}

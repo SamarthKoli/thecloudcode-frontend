@@ -1,31 +1,32 @@
-import React, { useState } from 'react';
-import SubscriptionPage from './Subscription';
-import NewsManagement from './NewsManagement';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import HomePage from './pages/HomePage';
+import UnsubscribePage from './pages/UnsubscribePage';
+import AdminLayout from './components/AdminLayout';
+import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
-
+import TauntPage from './components/TauntPage';
 function App() {
-  const [currentPage, setCurrentPage] = useState('subscription');
-
   return (
-    <div className="App">
-      <nav style={{ padding: '20px', background: '#f8f9fa', marginBottom: '20px' }}>
-        <button 
-          onClick={() => setCurrentPage('subscription')}
-          style={{ marginRight: '10px', padding: '10px 20px' }}
-        >
-          Subscription
-        </button>
-        <button 
-          onClick={() => setCurrentPage('news')}
-          style={{ padding: '10px 20px' }}
-        >
-          News Management
-        </button>
-      </nav>
-
-      {currentPage === 'subscription' && <SubscriptionPage />}
-      {currentPage === 'news' && <NewsManagement />}
-    </div>
+    <AuthProvider>
+      <Router>
+        <div className="App">
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<HomePage />} />
+            <Route path="/unsubscribe" element={<UnsubscribePage />} />
+            <Route path="/taunt" element={<TauntPage />} />
+            {/* Admin Routes (Protected) */}
+            <Route path="/admin/*" element={
+              <ProtectedRoute>
+                <AdminLayout />
+              </ProtectedRoute>
+            } />
+          </Routes>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Subscription.css';
+import '../Subscription.css';
 
 const SubscriptionPage = () => {
     const [email, setEmail] = useState('');
