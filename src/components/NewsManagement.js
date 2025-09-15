@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../NewsManagement.css';
-
+const API_URL = process.env.REACT_APP_API_URL;
 
 const NewsManagement = () => {
     const [articles, setArticles] = useState([]);
@@ -21,7 +21,7 @@ const NewsManagement = () => {
 
     const fetchSubscriberCount = async () => {
         try {
-            const response = await axios.get('/api/subscribers/count');
+            const response = await axios.get('${API_URL}/api/subscribers/count');
             setSubscriberCount(response.data.count);
         } catch (error) {
             console.error('Error fetching subscriber count:', error);
@@ -31,7 +31,7 @@ const NewsManagement = () => {
     const fetchRecentArticles = async () => {
         setLoading(true);
         try {
-            const response = await axios.get('/api/news/recent');
+            const response = await axios.get('${API_URL}/api/news/recent');
             setArticles(response.data.articles || []);
         } catch (error) {
             console.error('Error fetching articles:', error);
@@ -46,7 +46,7 @@ const NewsManagement = () => {
         setMessage('');
         
         try {
-            const response = await axios.post('/api/news/collect');
+            const response = await axios.post('${API_URL}/api/news/collect');
             setMessage(response.data.message);
             
             // Refresh articles after collection
@@ -66,7 +66,7 @@ const NewsManagement = () => {
         setMessage('');
         
         try {
-            const response = await axios.post('/api/news/process');
+            const response = await axios.post('${API_URL}/api/news/process');
             setProcessedArticles(response.data.topArticles || []);
             setMessage(response.data.message);
             setActiveTab('processed'); // Switch to processed tab
@@ -83,7 +83,7 @@ const NewsManagement = () => {
         setMessage('');
         
         try {
-            const response = await axios.post('/api/news/generate-newsletter');
+            const response = await axios.post('${API_URL}/api/news/generate-newsletter');
             setNewsletterPreview(response.data.newsletter);
             setProcessedArticles(response.data.topArticles || []);
             setMessage(response.data.message);

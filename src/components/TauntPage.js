@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../TauntPage.css';
-
+const API_URL = process.env.REACT_APP_API_URL;
 const TauntPage = () => {
     const [tauntData, setTauntData] = useState(null);
     const [countdown, setCountdown] = useState(10);
