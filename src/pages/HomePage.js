@@ -1,205 +1,92 @@
+// src/pages/HomePage.js (COMPLETE FILE)
 import React, { useState } from 'react';
 import { api } from '../api';
 import FeaturedArticles from '../components/FeaturedArticles';
 import { EnvelopeIcon, CheckIcon, SparklesIcon } from '@heroicons/react/24/outline';
 import '../HomePage.css';
-import herologo from '../herologo-removebg-preview.png'
+import herologo from '../herologo-removebg-preview.png';
+
 const HomePage = () => {
-    const [email, setEmail] = useState('');
-    const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState('');
-    const [isSuccess, setIsSuccess] = useState(false);
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        setMessage('');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email.trim()) {
+      setMessage('Please enter a valid email address');
+      setIsSuccess(false);
+      return;
+    }
+    setIsSubmitting(true);
+    setMessage('');
+    try {
+      const response = await api.post('/api/subscribers/subscribe', { email });
+      if (response.data.success) {
+        setMessage('Successfully subscribed! Check your email for confirmation.');
+        setIsSuccess(true);
+        setEmail('');
+      } else {
+        setMessage(response.data.message || 'Subscription failed');
+        setIsSuccess(false);
+      }
+    } catch (error) {
+      const errorMsg = error.response?.data?.message || 'Something went wrong. Please try again.';
+      setMessage(errorMsg);
+      setIsSuccess(false);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
-        try {
-           const res = await api.post('/api/subscribers/subscribe', { email });
-           
-            
-            setIsSuccess(true);
-            setMessage('Successfully subscribed! Check your email for confirmation.');
-            setEmail('');
-        } catch (error) {
-            setIsSuccess(false);
-            setMessage(error.response?.data?.message || 'Something went wrong!');
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    return (
-        <div className="homepage">
-            {/* Navigation Header */}
-            <nav className="nav-header">
-                <div className="nav-container">
-                    <div className="nav-brand">
-                        <div className="logo-container">
-                            <span className="brand-name">TheCloudCode</span>
-                        </div>
-                    </div>
-                    <div className="nav-links">
-                        <a href="#about">About</a>
-                        <a href="#featured">Articles</a>
-                        <a href="#subscribe">Subscribe</a>
-                    </div>
-                </div>
-            </nav>
-
-            {/* Hero Section with Mascot */}
-            <section className="hero">
-                <div className="hero-container">
-                    <div className="hero-content-wrapper">
-                        {/* Left Side - Content */}
-                        <div className="hero-content">
-                            <div className="hero-badge">
-                                <SparklesIcon className="badge-icon" />
-                                <span>AI-Powered Tech Insights</span>
-                            </div>
-                            
-                            <h1 className="hero-title">
-                                <span className="title-brand">TheCloudCode</span>
-                                <span className="title-main">Daily Tech Newsletter</span>
-                            </h1>
-                            
-                            <p className="hero-subtitle">
-                                Learn from what engineers at <strong>Google</strong>, <strong>Microsoft</strong>, and <strong>Amazon</strong> are reading. 
-                                Get AI-curated tech insights delivered to your inbox every morning.
-                            </p>
-                            
-                            <form onSubmit={handleSubmit} className="hero-subscribe-form">
-                                <div className="input-group">
-                                    <EnvelopeIcon className="input-icon" />
-                                    <input
-                                        type="email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        placeholder="Enter your email address"
-                                        required
-                                        disabled={loading}
-                                        className="email-input"
-                                    />
-                                    <button 
-                                        type="submit" 
-                                        disabled={loading || !email.trim()}
-                                        className="subscribe-btn"
-                                    >
-                                        {loading ? 'Subscribing...' : 'Subscribe'}
-                                    </button>
-                                </div>
-                            </form>
-
-                            {message && (
-                                <div className={`message ${isSuccess ? 'success' : 'error'}`}>
-                                    {isSuccess && <CheckIcon className="message-icon" />}
-                                    {message}
-                                </div>
-                            )}
-
-                            <div className="hero-stats">
-                                <div className="stat-item">
-                                    <span className="stat-number">30+</span>
-                                    <span className="stat-label">News And Articles</span>
-                                </div>
-                                <div className="stat-item">
-                                    <span className="stat-number">Daily</span>
-                                    <span className="stat-label">Updates</span>
-                                </div>
-                                <div className="stat-item">
-                                    <span className="stat-number">AI-Powered</span>
-                                    <span className="stat-label">Curation</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Right Side - Mascot Logo */}
-                        <div className="hero-mascot">
-                            <div className="mascot-container">
-                                <img 
-                                    src={herologo}
-                                    alt="TheCloudCode Mascot - Learning Developer" 
-                                    className="mascot-image"
-                                />
-                                <div className="mascot-float-elements">
-                                    <div className="float-element float-1">💻</div>
-                                    <div className="float-element float-2">☁️</div>
-                                    <div className="float-element float-3">⚡</div>
-                                    <div className="float-element float-4">🚀</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Rest of your sections remain the same */}
-            <FeaturedArticles />
-
-            {/* Features Section */}
-            <section className="features-section">
-                <div className="container">
-                    <div className="section-header">
-                        <h2>Why Choose TheCloudCode?</h2>
-                        <p>Because we know what is actually matters to you</p>
-                    </div>
-                    
-                    <div className="features-grid">
-                        <div className="feature-card">
-                            <div className="feature-icon">🤖</div>
-                            <h3>AI-Powered Curation</h3>
-                            <p>Advanced algorithms select and summarize the most important tech developments from trusted sources.</p>
-                        </div>
-                        
-                        <div className="feature-card">
-                            <div className="feature-icon">⚡</div>
-                            <h3>Daily & Concise</h3>
-                            <p>Get your complete tech update in under 5 minutes every morning. No spam, no fluff, just value.</p>
-                        </div>
-                        
-                        <div className="feature-card">
-                            <div className="feature-icon">🎯</div>
-                            <h3>Developer-Focused</h3>
-                            <p>Covering cloud, AI/ML, system design, and emerging technologies that matter to your career.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Footer */}
-            <footer className="footer">
-                <div className="footer-container">
-                    <div className="footer-brand">
-                        <div className="logo-container">
-                            <span className="brand-name">TheCloudCode</span>
-                        </div>
-                        <p>Empowering developers with daily tech insights</p>
-                    </div>
-                    
-                    <div className="footer-links">
-                        <div className="link-group">
-                            <h4>Product</h4>
-                            <a href="#subscribe">Subscribe</a>
-                            <a href="#archive">Archive</a>
-                            <a href="#about">About</a>
-                        </div>
-                        
-                        <div className="link-group">
-                            <h4>Support</h4>
-                            <a href="/unsubscribe">Unsubscribe</a>
-                            <a href="/privacy">Privacy</a>
-                            <a href="#contact">Contact</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div className="footer-bottom">
-                    <p>&copy; 2025 TheCloudCode. All rights reserved.</p>
-                </div>
-            </footer>
+  return (
+    <div className="homepage">
+      <section className="hero-section">
+        <div className="hero-content">
+          <div className="hero-logo">
+            <img src={herologo} alt="TheCloudCode" className="logo-image" />
+            <h1 className="hero-title">TheCloudCode</h1>
+          </div>
+          <h2 className="hero-subtitle">Your Daily Dose of Tech Innovation</h2>
+          <p className="hero-description">
+            Stay ahead with curated tech news, cloud computing insights, and developer trends.
+            Get the latest updates delivered to your inbox every day.
+          </p>
+          <div className="subscription-section">
+            <form onSubmit={handleSubmit} className="subscription-form">
+              <div className="input-group">
+                <EnvelopeIcon className="input-icon" />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email address"
+                  className="email-input"
+                  required
+                />
+                <button type="submit" disabled={isSubmitting} className="subscribe-button">
+                  {isSubmitting ? 'Subscribing...' : 'Subscribe Now'}
+                </button>
+              </div>
+            </form>
+            {message && (
+              <div className={`message ${isSuccess ? 'success' : 'error'}`}>
+                {isSuccess && <CheckIcon className="message-icon" />}
+                {message}
+              </div>
+            )}
+          </div>
+          <div className="features">
+            <div className="feature"><SparklesIcon className="feature-icon" /><span>AI-Curated Content</span></div>
+            <div className="feature"><CheckIcon className="feature-icon" /><span>Daily Updates</span></div>
+            <div className="feature"><EnvelopeIcon className="feature-icon" /><span>No Spam</span></div>
+          </div>
         </div>
-    );
+      </section>
+      <FeaturedArticles />
+    </div>
+  );
 };
 
 export default HomePage;
