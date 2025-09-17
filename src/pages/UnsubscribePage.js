@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { api } from '../api';
 
 const UnsubscribePage = () => {
     const [email, setEmail] = useState('');
@@ -13,7 +13,7 @@ const UnsubscribePage = () => {
         
         try {
             // You'll need to implement this endpoint in your backend
-            await axios.post('/api/subscribers/unsubscribe', { email });
+          await api.post('/api/subscribers/unsubscribe', { email });
             setMessage('Successfully unsubscribed. We\'re sorry to see you go!');
         } catch (error) {
             setMessage('Error processing unsubscribe request. Please contact support.');

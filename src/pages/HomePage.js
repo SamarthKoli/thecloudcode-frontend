@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { api } from '../api';
 import FeaturedArticles from '../components/FeaturedArticles';
 import { EnvelopeIcon, CheckIcon, SparklesIcon } from '@heroicons/react/24/outline';
 import '../HomePage.css';
@@ -16,7 +16,7 @@ const HomePage = () => {
         setMessage('');
 
         try {
-            const response = await axios.post('/api/subscribers/subscribe', { email });
+           const res = await api.post('/api/subscribers/subscribe', { email });
            
             
             setIsSuccess(true);

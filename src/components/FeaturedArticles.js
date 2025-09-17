@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { api } from '../api';
 import '../FeaturedArticles.css';
 const API_URL = process.env.REACT_APP_API_URL;
 const FeaturedArticles = () => {
@@ -13,7 +13,7 @@ const FeaturedArticles = () => {
 
     const fetchFeaturedArticles = async () => {
         try {
-          const response = await axios.get(`${API_URL}/api/news/featured`);
+         const res = await api.get('/api/news/featured');
 
             console.log('Featured articles response:', response.data);
             setArticles(response.data.articles || []);

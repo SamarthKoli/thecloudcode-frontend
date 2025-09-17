@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { api } from '../api';
 const API_URL = process.env.REACT_APP_API_URL;
 const NewsletterAdminPanel = () => {
   const [templateType, setTemplateType] = useState('daily');
@@ -12,9 +12,9 @@ const NewsletterAdminPanel = () => {
     try {
       const url =
         templateType === 'daily'
-          ? `${API_URL}/api/news/send-daily`
-          : `${API_URL}/api/news/send-weekly`;
-      const response = await axios.post(url);
+          ? '/api/news/send-daily'
+          : '/api/news/send-weekly';
+      const response = await api.post(url);
       if (response.data.success) {
         setMessage('Newsletter sent successfully');
       } else {

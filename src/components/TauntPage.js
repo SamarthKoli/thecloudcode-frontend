@@ -9,7 +9,7 @@ const TauntPage = () => {
 
     useEffect(() => {
         // Fetch taunt data when component mounts
-        fetch(`${API_URL}/api/taunt`)
+        fetch('/api/taunt')
             .then(response => response.json())
             .then(data => setTauntData(data))
             .catch(error => console.error('Error fetching taunt:', error));
