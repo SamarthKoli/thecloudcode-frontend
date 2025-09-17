@@ -12,8 +12,8 @@ const NewsletterAdminPanel = () => {
     try {
       const url =
         templateType === 'daily'
-          ? '${API_URL}/api/news/send-daily'
-          : '${API_URL}/api/news/send-weekly';
+          ? `${API_URL}/api/news/send-daily`
+          : `${API_URL}/api/news/send-weekly`;
       const response = await axios.post(url);
       if (response.data.success) {
         setMessage('Newsletter sent successfully');

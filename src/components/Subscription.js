@@ -15,7 +15,7 @@ const SubscriptionPage = () => {
 
     const fetchSubscriberCount = async () => {
         try {
-            const response = await axios.get('${API_URL}/api/subscribers/count');
+            const response = await axios.get(`${API_URL}/api/subscribers/count`);
             setSubscriberCount(response.data.count);
         } catch (error) {
             console.error('Error fetching subscriber count:', error);
@@ -28,7 +28,7 @@ const SubscriptionPage = () => {
         setMessage('');
 
         try {
-            const response = await axios.post('${API_URL}/api/subscribers/subscribe', { email });
+            const response = await axios.post(`${API_URL}/api/subscribers/subscribe`, { email });
             setIsSuccess(true);
             setMessage(response.data.message);
             setEmail('');

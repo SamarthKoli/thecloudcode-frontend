@@ -13,7 +13,8 @@ const FeaturedArticles = () => {
 
     const fetchFeaturedArticles = async () => {
         try {
-            const response = await axios.get('`${API_URL}/api/news/featured');
+          const response = await axios.get(`${API_URL}/api/news/featured`);
+
             console.log('Featured articles response:', response.data);
             setArticles(response.data.articles || []);
         } catch (error) {
