@@ -1,6 +1,5 @@
-// src/components/FeaturedArticles.js
 import React, { useState, useEffect } from 'react';
-import { api } from '../api'; // Ensure this path is correct
+import { api } from '../api';
 import '../FeaturedArticles.css';
 
 const FeaturedArticles = () => {
@@ -10,29 +9,19 @@ const FeaturedArticles = () => {
 
     useEffect(() => {
         const fetchFeaturedArticles = async () => {
-            console.log("Attempting to fetch featured articles...");
             try {
                 const response = await api.get('/api/news/featured');
-                
-                // *** This console log is critical for debugging ***
-                console.log("API Response Received:", response);
-
-                // Check if the response data and the articles array exist
-                if (response.data && response.data.success && Array.isArray(response.data.articles)) {
-                    console.log("Successfully fetched articles:", response.data.articles);
+                // The backend sends a payload like { success: true, articles: [...] }
+                // So we need to access the 'articles' property from the response data.
+                if (response.data && response.data.articles) {
                     setArticles(response.data.articles);
                 } else {
-                    console.warn("API call succeeded, but the response format was unexpected or no articles were found.", response.data);
-                    setArticles([]); // Set to empty array to show the "No articles" message
+                    // Handle cases where the API call is successful but there are no articles
+                    setArticles([]); 
                 }
             } catch (error) {
-                console.error("CRITICAL: Error fetching featured articles!", error);
-                 if (error.response) {
-                    console.error("Error Details:", error.response.data);
-                } else if (error.request) {
-                    console.error("No response received from the server. Is the backend running at " + api.defaults.baseURL + "?");
-                }
-                setError('Failed to load articles. Check the browser console (F12) for more details.');
+                console.error('Error fetching featured articles:', error);
+                setError('Failed to load articles. Please ensure the backend is running and accessible.');
             } finally {
                 setLoading(false);
             }
@@ -42,7 +31,10 @@ const FeaturedArticles = () => {
 
     const formatDate = (dateString) => {
         if (!dateString) return '';
-        return new Date(dateString).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        return new Date(dateString).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric'
+        });
     };
 
     if (loading) {
@@ -99,7 +91,7 @@ const FeaturedArticles = () => {
                             </div>
                         ))
                     ) : (
-                        <p>No featured articles are available at the moment.</p>
+                        <p>No featured articles available at the moment.</p>
                     )}
                 </div>
             </div>

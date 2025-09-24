@@ -1,7 +1,7 @@
 // src/api.js
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+const API_BASE_URL = 'http://localhost:8080';
 
 // This line will print the backend URL in your browser's console, so you can verify it's correct.
 console.log('API calls are being sent to:', API_BASE_URL);
