@@ -184,7 +184,7 @@ const HomePage = () => {
   <div style={{ textAlign: 'center', margin: '1rem 0' }}>
     <h2>Social Media</h2>
     <a
-      href="https://instagram.com/thecloudcode"
+      href="https://instagram.com/thecloudcode07"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Instagram"
