@@ -49,7 +49,9 @@ const FeaturedArticles = () => {
                 <div className="container">
                     <h2>Latest Tech Stories</h2>
                     <div style={{ display: 'flex', justifyContent: 'center', padding: '40px' }}>
+                        <h2>Finding best articles for you</h2>
                         <MagnifyingGlass
+                      
                             visible={true}
                             height="50"
                             width="50"
