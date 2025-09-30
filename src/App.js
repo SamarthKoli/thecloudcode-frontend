@@ -6,6 +6,7 @@ import UnsubscribePage from './pages/UnsubscribePage';
 import AdminLayout from './components/AdminLayout';
 import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
+import Privacy from './pages/privacy';
 import TauntPage from './components/TauntPage';
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/unsubscribe" element={<UnsubscribePage />} />
             <Route path="/taunt" element={<TauntPage />} />
+            <Route path='/privacy' element={<Privacy />}/>
             {/* Admin Routes (Protected) */}
             <Route path="/admin/*" element={
               <ProtectedRoute>

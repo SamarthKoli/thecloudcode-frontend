@@ -176,13 +176,13 @@ const HomePage = () => {
                             <h4>Support</h4>
                             <a href="/unsubscribe">Unsubscribe</a>
                             <a href="/privacy">Privacy</a>
-                            <a href="#contact">Contact</a>
                         </div>
                     </div>
                 </div>
-                <div className="footer-bottom">
-                    <p>&copy; 2025 TheCloudCode. All rights reserved.</p>
-                </div>
+              <div className="footer-bottom">
+  <p>© {new Date().getFullYear()} TheCloudCode. All rights reserved.</p>
+</div>
+
             </footer>
         </div>
     );

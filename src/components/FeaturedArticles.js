@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '../api';
 import '../FeaturedArticles.css';
+import { MagnifyingGlass } from 'react-loader-spinner';
 
 const CACHE_KEY = "latestArticlesCache";
 
 const FeaturedArticles = () => {
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
     // Load articles from cache for instant display
     useEffect(() => {
@@ -27,7 +27,7 @@ const FeaturedArticles = () => {
                     setArticles([]);
                 }
             } catch (error) {
-                setError('Failed to load articles. Please ensure the backend is running and accessible.');
+                // Removed error state & message display per request
             } finally {
                 setLoading(false);
             }
@@ -43,23 +43,20 @@ const FeaturedArticles = () => {
         });
     };
 
-    if (loading && articles.length === 0) {
+    if (loading || articles.length === 0) {
         return (
             <section className="featured-section">
                 <div className="container">
                     <h2>Latest Tech Stories</h2>
-                    <div className="loading">Loading featured articles...</div>
-                </div>
-            </section>
-        );
-    }
-
-    if (error) {
-        return (
-            <section className="featured-section">
-                <div className="container">
-                    <h2>Latest Tech Stories</h2>
-                    <div className="error">{error}</div>
+                    <div style={{ display: 'flex', justifyContent: 'center', padding: '40px' }}>
+                        <MagnifyingGlass
+                            visible={true}
+                            height="50"
+                            width="50"
+                            glassColor="#FF6B35"
+                            color="#764BA2"
+                        />
+                    </div>
                 </div>
             </section>
         );
@@ -73,32 +70,28 @@ const FeaturedArticles = () => {
                     <p className="section-subtitle">Hand-picked tech news for you</p>
                 </div>
                 <div className="featured-grid">
-                    {articles.length > 0 ? (
-                        articles.map((article, index) => (
-                            <div key={article.id || index} className="featured-card">
-                                {article.imageUrl && (
-                                    <div className="article-image">
-                                        <img src={article.imageUrl} alt={article.title} />
-                                    </div>
-                                )}
-                                <div className="article-content">
-                                    <div className="article-meta">
-                                        <span className="source">{article.source}</span>
-                                        <span className="date">{formatDate(article.publishedDate)}</span>
-                                    </div>
-                                    <h3 className="article-title">
-                                        <a href={article.url} target="_blank" rel="noopener noreferrer">
-                                            {article.title}
-                                        </a>
-                                    </h3>
-                                    <p className="article-description">{article.description || article.summary}</p>
-                                    <a href={article.url} target="_blank" rel="noopener noreferrer" className="read-more">Read More →</a>
+                    {articles.map((article, index) => (
+                        <div key={article.id || index} className="featured-card">
+                            {article.imageUrl && (
+                                <div className="article-image">
+                                    <img src={article.imageUrl} alt={article.title} />
                                 </div>
+                            )}
+                            <div className="article-content">
+                                <div className="article-meta">
+                                    <span className="source">{article.source}</span>
+                                    <span className="date">{formatDate(article.publishedDate)}</span>
+                                </div>
+                                <h3 className="article-title">
+                                    <a href={article.url} target="_blank" rel="noopener noreferrer">
+                                        {article.title}
+                                    </a>
+                                </h3>
+                                <p className="article-description">{article.description || article.summary}</p>
+                                <a href={article.url} target="_blank" rel="noopener noreferrer" className="read-more">Read More →</a>
                             </div>
-                        ))
-                    ) : (
-                        <p>No featured articles available at the moment.</p>
-                    )}
+                        </div>
+                    ))}
                 </div>
             </div>
         </section>
