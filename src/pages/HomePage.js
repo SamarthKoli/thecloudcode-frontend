@@ -157,33 +157,90 @@ const HomePage = () => {
                 </div>
             </section>
 
-            <footer className="footer">
-                <div className="footer-container">
-                    <div className="footer-brand">
-                        <div className="logo-container">
-                            <span className="brand-name">TheCloudCode</span>
-                        </div>
-                        <p>Empowering developers with daily tech insights</p>
-                    </div>
-                    <div className="footer-links">
-                        <div className="link-group">
-                            <h4>Product</h4>
-                            <a href="#subscribe">Subscribe</a>
-                            <a href="#archive">Archive</a>
-                            <a href="#about">About</a>
-                        </div>
-                        <div className="link-group">
-                            <h4>Support</h4>
-                            <a href="/unsubscribe">Unsubscribe</a>
-                            <a href="/privacy">Privacy</a>
-                        </div>
-                    </div>
-                </div>
-              <div className="footer-bottom">
-  <p>© {new Date().getFullYear()} TheCloudCode. All rights reserved.</p>
-</div>
+          <footer className="footer">
+  <div className="footer-container">
+    <div className="footer-brand">
+      <div className="logo-container">
+        <center>
+          <span className="brand-name">TheCloudCode</span>
+        </center>
+      </div>
+      <p>See you!!! in your inbox</p>
+    </div>
+    <div className="footer-links">
+      <div className="link-group">
+        <h4>Product</h4>
+        <a href="#subscribe">Subscribe</a>
+        <a href="#about">About</a>
+      </div>
+      <div className="link-group">
+        <h4>Support</h4>
+        <a href="/unsubscribe">Unsubscribe</a>
+        <a href="/privacy">Privacy</a>
+      </div>
+    </div>
+  </div>
 
-            </footer>
+  <div style={{ textAlign: 'center', margin: '1rem 0' }}>
+    <h2>Social Media</h2>
+    <a
+      href="https://instagram.com/thecloudcode"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Instagram"
+      style={{ margin: '0 10px', color:'black'}}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="45"
+        height="35"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M7.75 2h8.5C18.55 2 21 4.46 21 7.75v8.5c0 3.29-2.45 5.75-4.75 5.75h-8.5C5.45 22 3 19.54 3 16.25v-8.5C3 4.46 5.45 2 7.75 2zm4.25 4.09a3.16 3.16 0 1 0 0 6.31 3.16 3.16 0 0 0 0-6.31zm4.88-.4a.74.74 0 1 1 0 1.49.74.74 0 0 1 0-1.49zM12 8a1.69 1.69 0 1 1-1.69 1.69A1.7 1.7 0 0 1 12 8z" />
+      </svg>
+    </a>
+    <a
+      href="https://x.com/KoliSamarthh?t=pGcyXGrU6vKSP_tPolTSAg&s=09"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Twitter"
+      style={{ margin: '0 10px', color:'black' }}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="45"
+        height="35"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+      </svg>
+    </a>
+    <a
+      href="https://youtube.com/@thecloudcode?si=eEVK0iTOom57A2Cx"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="YouTube"
+      style={{ margin: '0 10px', color:'black' }}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="45"
+        height="35"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+      </svg>
+    </a>
+  </div>
+
+  <div className="footer-bottom">
+    <p>© {new Date().getFullYear()} TheCloudCode. All rights reserved.</p>
+  </div>
+</footer>
+
         </div>
     );
 };

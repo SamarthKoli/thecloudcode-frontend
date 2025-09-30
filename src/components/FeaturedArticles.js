@@ -53,8 +53,8 @@ const FeaturedArticles = () => {
                         <MagnifyingGlass
                       
                             visible={true}
-                            height="50"
-                            width="50"
+                            height="70"
+                            width="70"
                             glassColor="#FF6B35"
                             color="#764BA2"
                         />

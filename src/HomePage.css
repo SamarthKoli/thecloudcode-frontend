@@ -46,6 +46,7 @@
 }
 
 .brand-name {
+    padding-left: 80px;
     font-size: 1.25rem;
     font-weight: 700;
     color: #FF6B35;
