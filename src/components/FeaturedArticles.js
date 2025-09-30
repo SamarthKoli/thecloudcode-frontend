@@ -2,25 +2,31 @@ import React, { useState, useEffect } from 'react';
 import { api } from '../api';
 import '../FeaturedArticles.css';
 
+const CACHE_KEY = "latestArticlesCache";
+
 const FeaturedArticles = () => {
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // Load articles from cache for instant display
+    useEffect(() => {
+        const cached = localStorage.getItem(CACHE_KEY);
+        if (cached) setArticles(JSON.parse(cached));
+    }, []);
+
+    // Always try fetching latest articles from backend and update cache
     useEffect(() => {
         const fetchFeaturedArticles = async () => {
             try {
-                const response = await api.get('/api/news/featured');
-                // The backend sends a payload like { success: true, articles: [...] }
-                // So we need to access the 'articles' property from the response data.
+                const response = await api.get('/api/news/cached-latest');
                 if (response.data && response.data.articles) {
                     setArticles(response.data.articles);
+                    localStorage.setItem(CACHE_KEY, JSON.stringify(response.data.articles));
                 } else {
-                    // Handle cases where the API call is successful but there are no articles
-                    setArticles([]); 
+                    setArticles([]);
                 }
             } catch (error) {
-                console.error('Error fetching featured articles:', error);
                 setError('Failed to load articles. Please ensure the backend is running and accessible.');
             } finally {
                 setLoading(false);
@@ -37,7 +43,7 @@ const FeaturedArticles = () => {
         });
     };
 
-    if (loading) {
+    if (loading && articles.length === 0) {
         return (
             <section className="featured-section">
                 <div className="container">
@@ -85,7 +91,7 @@ const FeaturedArticles = () => {
                                             {article.title}
                                         </a>
                                     </h3>
-                                    <p className="article-description">{article.description}</p>
+                                    <p className="article-description">{article.description || article.summary}</p>
                                     <a href={article.url} target="_blank" rel="noopener noreferrer" className="read-more">Read More →</a>
                                 </div>
                             </div>

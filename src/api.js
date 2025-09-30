@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // This will use the Render backend URL in production
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+const API_BASE_URL ='http://localhost:8080';
 
 
 export const api = axios.create({
