@@ -45,6 +45,23 @@
     border-radius: 6px;
 }
 
+.provider-scroll-text {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #555;
+  user-select: none;
+  padding: 1rem 0;
+}
+
+.trusted-providers h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fa6a23; /* Match the orange color from the image */
+  margin-bottom: 1rem;
+  font-family: inherit; /* To keep consistent font family */
+  letter-spacing: 0.01em;
+}
+
 .brand-name {
     padding-left: 80px;
     font-size: 1.25rem;

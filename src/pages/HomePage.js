@@ -4,7 +4,7 @@ import FeaturedArticles from '../components/FeaturedArticles';
 import { EnvelopeIcon, CheckIcon, SparklesIcon } from '@heroicons/react/24/outline';
 import '../HomePage.css';
 import herologo from '../herologo-removebg-preview.png';
-
+import ScrollVelocity from '../components/ScrollVelocity';
 const HomePage = () => {
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
@@ -129,6 +129,23 @@ const HomePage = () => {
                     </div>
                 </div>
             </section>
+  <section className="trusted-providers">
+  <h3>Our Top & Trusted Content Providers</h3>
+  <ScrollVelocity
+    texts={[
+      "© CNN Tech",
+      "© TechCrunch",
+      "© Wired",
+      "© The Verge",
+      "© Microsoft Developer Blogs",
+      "© Google AI Blog",
+      "© Amazon Developer News"
+    ]}
+    velocity={70}
+    className="provider-scroll-text"
+  />
+ <p2>All rights are reserved to respective publishers.</p2>
+</section>
             <FeaturedArticles />
 
             <section id="about" className="features-section">
