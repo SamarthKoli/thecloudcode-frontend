@@ -25,6 +25,7 @@
 }
 
 .nav-container {
+    height: 60px;
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
@@ -62,6 +63,15 @@
   letter-spacing: 0.01em;
 }
 
+.brand-logo{
+    width: 60px;
+    height: 103px;
+}
+.main-logo{
+    
+    height: 100px;
+   width: 100px;
+}
 .brand-name {
     padding-left: 80px;
     font-size: 1.25rem;
@@ -496,6 +506,7 @@
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     .nav-container {
+        height: 55px;
         padding: 1rem;
     }
     

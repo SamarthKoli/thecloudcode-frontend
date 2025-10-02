@@ -5,6 +5,7 @@ import { EnvelopeIcon, CheckIcon, SparklesIcon } from '@heroicons/react/24/outli
 import '../HomePage.css';
 import herologo from '../herologo-removebg-preview.png';
 import ScrollVelocity from '../components/ScrollVelocity';
+import cclogo from '../cclogo.png'
 const HomePage = () => {
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
@@ -39,6 +40,13 @@ const HomePage = () => {
                 <div className="nav-container">
                     <div className="nav-brand">
                         <div className="logo-container">
+                            <div className='brand-logo'>
+                              <img
+                                    src={cclogo}
+                                    alt="TheCloudCode logo"
+                                    className="main-logo"
+                                />
+                            </div>
                             <span className="brand-name">TheCloudCode</span>
                         </div>
                     </div>
